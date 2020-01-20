@@ -1,25 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import "./App.css";
+import Navbar from "./components/Navbar";
+import Countries from "./views/Countries";
+import Country from "./views/Country";
 
 function App() {
+  const [useDarkTheme, setUseDarkTheme] = useState(false);
+
+  const switchTheme = () => setUseDarkTheme(!useDarkTheme);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className={useDarkTheme ? "dark" : "light"}>
+        <Navbar switchTheme={switchTheme} isDarkTheme={useDarkTheme}></Navbar>
+        <div className="main">
+          <Switch>
+            <Route exact path="/">
+              <Countries />
+            </Route>
+            <Route path="/countries/:code">
+              <Country />
+            </Route>
+          </Switch>
+        </div>
+      </div>
+    </Router>
   );
 }
 
