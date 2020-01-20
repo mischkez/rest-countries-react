@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useCallback, useEffect, useState } from "react";
 import store from "store";
 import CountryCard from "../components/CountryCard";
 import Dropdown from "../components/DropDown";
@@ -7,14 +7,11 @@ import Search from "../components/Search";
 import { BASE_URL } from "../config";
 
 export default function Countries() {
-  const [countries, setCountries] = useState([]);
+  const cachedCountries = store.get("countries");
 
-  useEffect(() => getInitialData(), []);
+  const [countries, setCountries] = useState(cachedCountries);
 
-  const getInitialData = () => {
-    const cachedCountries = store.get("countries");
-    console.log(cachedCountries);
-
+  const getInitialData = useCallback(() => {
     if (cachedCountries) {
       setCountries(cachedCountries);
     } else {
@@ -23,7 +20,9 @@ export default function Countries() {
         setCountries(res.data);
       });
     }
-  };
+  }, [cachedCountries]);
+
+  useEffect(() => getInitialData(), [getInitialData]);
 
   const filterData = region => {
     axios.get(`${BASE_URL}/region/${region}`).then(res => {
