@@ -9,7 +9,7 @@ export default function Dropdown({ onDropdownChange }) {
   };
 
   return (
-    <select value={value} onChange={handleOnChange}>
+    <select aria-label="Region Filter" value={value} onChange={handleOnChange}>
       <option value="" disabled>
         Filter By Region
       </option>

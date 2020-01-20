@@ -6,6 +6,7 @@ export default function Search({ search }) {
     <div className="search-container">
       <MdSearch className="search-icon"></MdSearch>
       <input
+        aria-label="Search"
         type="text"
         placeholder="Search..."
         onChange={event => search(event.target.value)}
