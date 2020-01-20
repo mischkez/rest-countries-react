@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { Fragment, useEffect, useState } from "react";
+import store from "store";
 import CountryCard from "../components/CountryCard";
 import Dropdown from "../components/DropDown";
 import Search from "../components/Search";
@@ -11,9 +12,17 @@ export default function Countries() {
   useEffect(() => getInitialData(), []);
 
   const getInitialData = () => {
-    axios.get(`${BASE_URL}/all`).then(res => {
-      setCountries(res.data);
-    });
+    const cachedCountries = store.get("countries");
+    console.log(cachedCountries);
+
+    if (cachedCountries) {
+      setCountries(cachedCountries);
+    } else {
+      axios.get(`${BASE_URL}/all`).then(res => {
+        store.set("countries", res.data);
+        setCountries(res.data);
+      });
+    }
   };
 
   const filterData = region => {
