@@ -7,7 +7,7 @@ export default function CountryCard({ country }) {
       <div className="" key={country.alpha2Code}>
         <img src={country.flag} alt={country.name + "'s flag"} />
         <div className="card-body">
-          <h1>{country.name}</h1>
+          <h2>{country.name}</h2>
           <p>
             <strong>Population:</strong> {country.population}
           </p>

@@ -42,42 +42,46 @@ export default function Country() {
         <div className="details">
           <div>
             <h1>{country.name}</h1>
-            <p>
-              <strong>Native name: </strong>
-              {country.nativeName}
-            </p>
-            <p>
-              <strong>Region: </strong>
-              {country.region}
-            </p>
-            <p>
-              <strong>Top level domain: </strong>
-              {country.topLevelDomain}
-            </p>
-            <p>
-              <strong>Languages: </strong>
-              {languages.join(", ")}
-            </p>
+            <ul>
+              <li>
+                <strong>Native name: </strong>
+                {country.nativeName}
+              </li>
+              <li>
+                <strong>Region: </strong>
+                {country.region}
+              </li>
+              <li>
+                <strong>Top level domain: </strong>
+                {country.topLevelDomain}
+              </li>
+              <li>
+                <strong>Languages: </strong>
+                {languages.join(", ")}
+              </li>
+            </ul>
           </div>
           <div>
-            <p>
-              <strong>Population: </strong>
-              {country.population}
-            </p>
-            <p>
-              <strong>Sub region: </strong>
-              {country.subregion}
-            </p>
-            <p>
-              <strong>Currencies: </strong>
-              {currencies.join(", ")}
-            </p>
-            {borders.length > 1 && (
-              <p className="borders">
-                <strong>Borders:</strong>
-                {borders}
-              </p>
-            )}
+            <ul>
+              <li>
+                <strong>Population: </strong>
+                {country.population}
+              </li>
+              <li>
+                <strong>Sub region: </strong>
+                {country.subregion}
+              </li>
+              <li>
+                <strong>Currencies: </strong>
+                {currencies.join(", ")}
+              </li>
+              {borders.length > 1 && (
+                <li className="borders">
+                  <strong>Borders:</strong>
+                  {borders}
+                </li>
+              )}
+            </ul>
           </div>
         </div>
       </div>

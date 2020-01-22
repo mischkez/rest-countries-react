@@ -155,6 +155,11 @@ select {
   box-shadow: 5px 10px 10px rgb(19, 18, 18) !important;
 }
 
+.details ul {
+  list-style: none;
+  padding-left: 0;
+}
+
 .back-button {
   display: flex;
   justify-content: space-between;
